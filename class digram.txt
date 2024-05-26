@@ -1,0 +1,31 @@
+x@startuml
+class User {
+  +username: String
+  +password: String
+  +register()
+  +login()
+  +sendMessage(message: Message)
+}
+
+abstract class Message {
+  +sender: User
+  +receiver: User
+  +content: String
+  +send()
+}
+
+class TextMessage extends Message {
+  +textContent: String
+  +send()
+}
+
+class FileMessage extends Message {
+  +fileName: String
+  +fileData: Binary
+  +send()
+}
+
+User "*" *--> "*" User
+Message <|-- TextMessage
+Message <|-- FileMessage
+@enduml
